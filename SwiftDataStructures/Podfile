@@ -1,0 +1,12 @@
+use_frameworks!
+inhibit_all_warnings!
+
+target 'SwiftDataStructures' do
+  platform :ios, '8.0'
+  pod 'SwiftLint'
+end
+
+target 'SwiftDataStructuresTests' do
+  platform :ios, '8.0'
+  pod 'SwiftLint'
+end

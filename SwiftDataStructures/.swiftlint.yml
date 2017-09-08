@@ -1,0 +1,295 @@
+whitelist_rules:
+
+  - closing_brace
+  - closure_end_indentation
+  - closure_parameter_position
+  - closure_spacing
+  - colon
+  - comma
+  - control_statement
+  - empty_enum_arguments
+  - empty_parameters
+  - empty_parentheses_with_trailing_closure
+  - explicit_init
+  - file_length
+  - first_where
+  - force_cast
+  - force_try
+  - force_unwrapping
+  - implicit_getter
+  - implicit_return
+  - leading_whitespace
+  - legacy_constant
+  - legacy_constructor
+  - line_length
+  - mark
+  - nesting
+  - opening_brace
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prohibited_super_call
+  - redundant_discardable_let
+  - redundant_nil_coalescing
+  - redundant_optional_initialization
+  - redundant_string_enum_value
+  - redundant_void_return
+  - return_arrow_whitespace
+  - shorthand_operator
+  - sorted_imports
+  - statement_position
+  - switch_case_on_newline
+  - syntactic_sugar
+  - todo
+  - trailing_newline
+  - trailing_semicolon
+  - trailing_whitespace
+  - type_name
+  - unused_closure_parameter
+  - unused_enumerated
+  - unused_optional_binding
+  - vertical_whitespace
+  - void_return
+  - custom_rules
+
+closing_brace:
+  severity: error
+
+closure_end_indentation:
+  severity: error
+
+closure_spacing:
+  severity: error
+
+closure_parameter_position:
+  severity: error
+
+colon:
+  severity: error
+
+comma:
+  severity: error
+
+control_statement:
+  severity: error
+
+empty_enum_arguments:
+  severity: error
+
+empty_parameters:
+  severity: error
+
+empty_parentheses_with_trailing_closure:
+  severity: error
+
+explicit_init:
+  severity: error
+
+file_length:
+  warning: 400
+  error: 400
+
+first_where:
+  severity: error
+
+force_cast:
+  severity: error
+
+force_try:
+  severity: error
+
+force_unwrapping:
+  severity: error
+
+implicit_getter:
+  severity: error
+
+implicit_return:
+  severity: error
+
+leading_whitespace:
+  severity: error
+
+line_length:
+  warning: 120
+  error: 120
+
+mark:
+  severity: error
+
+nesting:
+  severity: error
+
+legacy_constant:
+  severity: error
+
+legacy_constructor:
+  severity: error
+
+opening_brace:
+  severity: error
+
+operator_usage_whitespace:
+  severity: error
+
+overridden_super_call:
+  severity: error
+
+prohibited_super_call:
+  severity: error
+
+redundant_discardable_let:
+  severity: error
+
+redundant_nil_coalescing:
+  severity: error
+
+redundant_optional_initialization:
+  severity: error
+
+redundant_string_enum_value:
+  severity: error
+
+redundant_void_return:
+  severity: error
+
+return_arrow_whitespace:
+  severity: error
+
+shorthand_operator:
+  severity: error
+
+sorted_imports:
+  severity: error
+
+statement_position:
+  severity: error
+
+switch_case_on_newline:
+  severity: error
+
+syntactic_sugar:
+  severity: error
+
+todo:
+  severity: error
+
+trailing_newline:
+  severity: error
+
+trailing_semicolon:
+  severity: error
+
+trailing_whitespace:
+  severity: error
+
+type_name:
+  min_length:
+    warning: 0
+    error: 0
+  max_length:
+    warning: 50
+    error: 50
+
+unused_closure_parameter:
+  severity: error
+
+unused_enumerated:
+  severity: error
+
+unused_optional_binding:
+  severity: error
+
+vertical_whitespace:
+  severity: error
+
+void_return:
+  severity: error
+
+custom_rules:
+
+  double_spaces_rule:
+    name: "Double spaces"
+    regex: '\S\h{2,}?\S'
+    match_kinds:
+      - argument
+      - identifier
+      - keyword
+      - number
+      - objectliteral
+      - parameter
+      - placeholder
+      - typeidentifier
+    message: "No double spaces allowed, if not indentation."
+    severity: error
+
+  indentation_rule:
+    name: "Indentation"
+    regex: "\
+^\\h{1,3}\\H|\
+^\\h{5,7}\\H|\
+^\\h{9,11}\\H|\
+^\\h{13,15}\\H|\
+^\\h{17,19}\\H|\
+^\\h{21,23}\\H|\
+^\\h{25,}?\\H"
+    match_kinds:
+      - argument
+      - attribute.builtin
+      - attribute.id
+      - comment
+      - comment.mark
+      - comment.url
+      - identifier
+      - keyword
+      - number
+      - objectliteral
+      - parameter
+      - placeholder
+      - typeidentifier
+    message: "The step of indentation is 4 (total is mo more than 24)."
+    severity: error
+
+  access_control_rule:
+    name: "Access control rule"
+    regex: '(^|\h)\w+\h+(public|open|fileprivate|internal|private)(?!\(set\))'
+    match_kinds:
+      - attribute.builtin
+    message: "Access control modifier must be placed before other modifiers."
+    severity: error
+
+  whitespace_after_colon_rule:
+    name: "Space after colon rule"
+    regex: '\w:[^\s)]'
+    match_kinds:
+      - identifier
+      - typeidentifier
+    message: "Whitespace should be placed after a colon."
+    severity: error
+
+  separate_line_attribute_rule:
+    name: "Separate line attribute rule"
+    regex: "\\h*(?:\
+open\\h?|\
+convenience\\h?|\
+override\\h?|\
+public(?:\\(set\\))?\\h?|\
+private(?:\\(set\\))?\\h?|\
+fileprivate(?:\\(set\\))?\\h?|\
+internal(?:\\(set\\))?\\h?|\
+lazy\\h?|\
+final\\h?|\
+(?<!\\[)weak\\h?|\
+(?<!\\[)unowned\\h?|\
+mutating\\h?|\
+required\\h?|\
+dynamic\\h?\
+prefix\\h?|\
+infix\\h?|\
+postfix\\h?|\
+)++\\w+"
+    match_kinds:
+      - attribute.builtin
+      - keyword
+    message: "Attributes and modifiers must be placed on a separate line."
+    severity: error
+
