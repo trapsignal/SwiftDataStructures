@@ -9,7 +9,8 @@
 
 extension Node {
 
-    fileprivate var height: Int {
+    fileprivate
+    var height: Int {
         let leftHeight = (left as? Node)?.height ?? 0
         let rightHeight = (right as? Node)?.height ?? 0
         return max(leftHeight, rightHeight) + 1

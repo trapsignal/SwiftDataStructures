@@ -250,7 +250,7 @@ custom_rules:
     severity: error
 
   access_control_rule:
-    name: "Access control rule"
+    name: "Access control"
     regex: '(^|\h)\w+\h+(public|open|fileprivate|internal|private)(?!\(set\))'
     match_kinds:
       - attribute.builtin
@@ -258,7 +258,7 @@ custom_rules:
     severity: error
 
   whitespace_after_colon_rule:
-    name: "Space after colon rule"
+    name: "Space after colon"
     regex: '\w:[^\s)]'
     match_kinds:
       - identifier
@@ -266,8 +266,8 @@ custom_rules:
     message: "Whitespace should be placed after a colon."
     severity: error
 
-  separate_line_attribute_rule:
-    name: "Separate line attribute rule"
+  attributes_on_separate_line_rule:
+    name: "Attributes on separate line"
     regex: "\\h*(?:\
 open\\h?|\
 convenience\\h?|\
@@ -285,7 +285,7 @@ required\\h?|\
 dynamic\\h?|\
 prefix\\h?|\
 infix\\h?|\
-postfix\\h?|\
+postfix\\h?\
 )++\\w+"
     match_kinds:
       - attribute.builtin

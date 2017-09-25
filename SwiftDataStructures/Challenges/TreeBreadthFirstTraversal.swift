@@ -10,7 +10,8 @@
 
 extension Node {
 
-    fileprivate func add(to queue: inout PriorityQueue<Value>, with priority: Int) {
+    fileprivate
+    func add(to queue: inout PriorityQueue<Value>, with priority: Int) {
         queue.push(value, priority: priority)
         [
             left as? Node,

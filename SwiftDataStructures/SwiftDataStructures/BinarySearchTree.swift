@@ -12,7 +12,8 @@ class Node<Value: Comparable> {
     var right: Node?
     var onBecomingRoot: (Node?) -> Void
 
-    weak var parent: Node? {
+    weak
+    var parent: Node? {
         didSet {
             updateParent(with: parent)
         }
@@ -54,7 +55,8 @@ class Node<Value: Comparable> {
         }
     }
 
-    fileprivate static func remove(_ value: Value, from node: Node) {
+    fileprivate
+    static func remove(_ value: Value, from node: Node) {
         if value < node.value, let left = node.left {
             remove(value, from: left)
         } else if value > node.value, let right = node.right {
@@ -64,7 +66,8 @@ class Node<Value: Comparable> {
         }
     }
 
-    private func remove() {
+    private
+    func remove() {
         if let left = left, right != nil {
             let replacingNode = left.maximumNode
             value = replacingNode.value
@@ -103,7 +106,8 @@ class Node<Value: Comparable> {
         otherNode?.parent = parent
     }
 
-    private func updateParent(with parent: Node?) {
+    private
+    func updateParent(with parent: Node?) {
         if parent == nil {
             onBecomingRoot(self)
         }

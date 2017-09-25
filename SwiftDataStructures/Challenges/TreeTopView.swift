@@ -19,7 +19,8 @@ extension RedBlackTree {
         return indicesToValues.keys.sorted().flatMap { indicesToValues[$0]?.1 }
     }
 
-    private func explore(
+    private
+    func explore(
         node: Node<Value>,
         atLevel level: Int,
         atCoordinate coordinate: Int,
