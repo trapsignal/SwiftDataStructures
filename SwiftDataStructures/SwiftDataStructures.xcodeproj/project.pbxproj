@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C802D9071F7531DD00AA3BFA /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D9061F7531DD00AA3BFA /* Queue.swift */; };
+		C802D90B1F75356E00AA3BFA /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */; };
+		C802D90D1F7542EB00AA3BFA /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */; };
+		C802D90F1F75500200AA3BFA /* BinarySearchTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */; };
 		C87593F31F59DDCD0065A34D /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87593F21F59DDCD0065A34D /* OrderedDictionaryTests.swift */; };
 		C87593FF1F5EEDE50065A34D /* SwiftDataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = C87593FD1F5EEDE50065A34D /* SwiftDataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C87594031F5EEDED0065A34D /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87593F41F5D9B360065A34D /* Mapping.swift */; };
@@ -53,6 +57,10 @@
 		66E2B28D2ED14C4EC4EF1B80 /* Pods-SwiftDataStructuresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDataStructuresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDataStructuresTests/Pods-SwiftDataStructuresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7D8872B670CC7DEE0DE92AAA /* Pods-SwiftDataStructures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDataStructures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDataStructures/Pods-SwiftDataStructures.debug.xcconfig"; sourceTree = "<group>"; };
 		8E32906C3EE5375CF0BB5AFD /* Pods-SwiftDataStructures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDataStructures.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDataStructures/Pods-SwiftDataStructures.release.xcconfig"; sourceTree = "<group>"; };
+		C802D9061F7531DD00AA3BFA /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
+		C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTreeTests.swift; sourceTree = "<group>"; };
 		C86147CD1F50577900CC7C91 /* HashTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashTable.swift; sourceTree = "<group>"; };
 		C87593F01F59C19A0065A34D /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		C87593F21F59DDCD0065A34D /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
@@ -173,6 +181,9 @@
 				C87932441F4D8F3700C1C45A /* ChainingSet.swift */,
 				C87932161F4D8CFF00C1C45A /* ChainingHashTable.swift */,
 				C87932181F4D8CFF00C1C45A /* List.swift */,
+				C802D9061F7531DD00AA3BFA /* Queue.swift */,
+				C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */,
+				C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */,
 			);
 			path = SwiftDataStructures;
 			sourceTree = "<group>";
@@ -180,6 +191,7 @@
 		C87932341F4D8D5A00C1C45A /* SwiftDataStructuresTests */ = {
 			isa = PBXGroup;
 			children = (
+				C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */,
 				C88096A21F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift */,
 				C87932501F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift */,
 				C87932351F4D8D5A00C1C45A /* ChainingHashTableTests.swift */,
@@ -499,6 +511,8 @@
 				C87594031F5EEDED0065A34D /* Mapping.swift in Sources */,
 				C87594121F5F06F80065A34D /* CustomDictionary.swift in Sources */,
 				C87594091F5EEE010065A34D /* OpenAddressingDictionary.swift in Sources */,
+				C802D9071F7531DD00AA3BFA /* Queue.swift in Sources */,
+				C802D90B1F75356E00AA3BFA /* PriorityQueue.swift in Sources */,
 				C875940F1F5EEE140065A34D /* List.swift in Sources */,
 				C875940B1F5EEE070065A34D /* OpenAddressingHashTable.swift in Sources */,
 				C87594041F5EEDF10065A34D /* OrderedDictionary.swift in Sources */,
@@ -507,6 +521,7 @@
 				C875940D1F5EEE0D0065A34D /* ChainingSet.swift in Sources */,
 				C87594081F5EEDFD0065A34D /* HashTable.swift in Sources */,
 				C87594061F5EEDF70065A34D /* HashTableBag.swift in Sources */,
+				C802D90D1F7542EB00AA3BFA /* BinarySearchTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +535,7 @@
 				C879324B1F4D90E200C1C45A /* ListTests.swift in Sources */,
 				C87932361F4D8D5A00C1C45A /* ChainingHashTableTests.swift in Sources */,
 				C87593F31F59DDCD0065A34D /* OrderedDictionaryTests.swift in Sources */,
+				C802D90F1F75500200AA3BFA /* BinarySearchTreeTests.swift in Sources */,
 				C8894CDB1F55799400D0E063 /* RedBlackTreeTests.swift in Sources */,
 				C87932491F4D907500C1C45A /* ChainingDictionaryTests.swift in Sources */,
 			);
