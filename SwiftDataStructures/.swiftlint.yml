@@ -282,7 +282,7 @@ final\\h?|\
 (?<!\\[)unowned\\h?|\
 mutating\\h?|\
 required\\h?|\
-dynamic\\h?\
+dynamic\\h?|\
 prefix\\h?|\
 infix\\h?|\
 postfix\\h?|\
@@ -292,4 +292,3 @@ postfix\\h?|\
       - keyword
     message: "Attributes and modifiers must be placed on a separate line."
     severity: error
-
