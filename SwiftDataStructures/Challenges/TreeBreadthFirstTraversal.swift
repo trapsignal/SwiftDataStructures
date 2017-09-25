@@ -6,12 +6,12 @@
 //
 
 @testable import RedBlackTree
-@testable import SwiftDataStructures
+import SwiftDataStructures
 
 extension Node {
 
     fileprivate
-    func add(to queue: inout PriorityQueue<Value>, with priority: Int) {
+    func add(to queue: inout SwiftDataStructures.PriorityQueue<Value>, with priority: Int) {
         queue.push(value, priority: priority)
         [
             left as? Node,

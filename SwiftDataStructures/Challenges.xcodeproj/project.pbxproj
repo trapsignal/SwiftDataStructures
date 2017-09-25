@@ -20,6 +20,10 @@
 		C85C9D621F62C16200B889B8 /* SwiftDataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C9D601F62C16200B889B8 /* SwiftDataStructures.framework */; };
 		C85C9D631F62C91D00B889B8 /* RedBlackTree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C9D5F1F62C16200B889B8 /* RedBlackTree.framework */; };
 		C85C9D641F62C91D00B889B8 /* SwiftDataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C9D601F62C16200B889B8 /* SwiftDataStructures.framework */; };
+		C8C826731F79199400CEB88A /* HuffmanDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C826721F79199400CEB88A /* HuffmanDecoding.swift */; };
+		C8C826751F791EBD00CEB88A /* HuffmanDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C826741F791EBD00CEB88A /* HuffmanDecodingTests.swift */; };
+		C8C826771F7921D800CEB88A /* TreeLowestCommonAncestor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C826761F7921D800CEB88A /* TreeLowestCommonAncestor.swift */; };
+		C8C826791F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C826781F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		C85C9D5C1F62BB7500B889B8 /* TreeTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeTopView.swift; sourceTree = "<group>"; };
 		C85C9D5F1F62C16200B889B8 /* RedBlackTree.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RedBlackTree.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftDataStructures-atqithfxrwbizderfmxsklznszek/Build/Products/Debug-iphonesimulator/RedBlackTree.framework"; sourceTree = "<group>"; };
 		C85C9D601F62C16200B889B8 /* SwiftDataStructures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDataStructures.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SwiftDataStructures-atqithfxrwbizderfmxsklznszek/Build/Products/Debug-iphonesimulator/SwiftDataStructures.framework"; sourceTree = "<group>"; };
+		C8C826721F79199400CEB88A /* HuffmanDecoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuffmanDecoding.swift; sourceTree = "<group>"; };
+		C8C826741F791EBD00CEB88A /* HuffmanDecodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuffmanDecodingTests.swift; sourceTree = "<group>"; };
+		C8C826761F7921D800CEB88A /* TreeLowestCommonAncestor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeLowestCommonAncestor.swift; sourceTree = "<group>"; };
+		C8C826781F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeLowestCommonAncestorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +93,14 @@
 			isa = PBXGroup;
 			children = (
 				C85C9D5B1F62BB5900B889B8 /* Supporting Files */,
+				C8C826721F79199400CEB88A /* HuffmanDecoding.swift */,
 				C85C9D5C1F62BB7500B889B8 /* TreeTopView.swift */,
 				C802D8FE1F75127500AA3BFA /* TreePreorderTraversal.swift */,
 				C802D9001F7529A300AA3BFA /* TreePostorderTraversal.swift */,
 				C802D9021F752BCD00AA3BFA /* TreeInorderTraversal.swift */,
 				C802D9041F752DB800AA3BFA /* TreeHeight.swift */,
 				C802D9081F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift */,
+				C8C826761F7921D800CEB88A /* TreeLowestCommonAncestor.swift */,
 			);
 			path = Challenges;
 			sourceTree = "<group>";
@@ -99,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				C85C9D501F62BAB200B889B8 /* ChallengesTests.swift */,
+				C8C826741F791EBD00CEB88A /* HuffmanDecodingTests.swift */,
+				C8C826781F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift */,
 				C85C9D521F62BAB200B889B8 /* Info.plist */,
 			);
 			path = ChallengesTests;
@@ -244,12 +256,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C826731F79199400CEB88A /* HuffmanDecoding.swift in Sources */,
 				C802D9031F752BCD00AA3BFA /* TreeInorderTraversal.swift in Sources */,
 				C85C9D5D1F62BB7500B889B8 /* TreeTopView.swift in Sources */,
 				C802D9051F752DB800AA3BFA /* TreeHeight.swift in Sources */,
 				C802D9011F7529A300AA3BFA /* TreePostorderTraversal.swift in Sources */,
 				C802D9091F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift in Sources */,
 				C802D8FF1F75127500AA3BFA /* TreePreorderTraversal.swift in Sources */,
+				C8C826771F7921D800CEB88A /* TreeLowestCommonAncestor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C826751F791EBD00CEB88A /* HuffmanDecodingTests.swift in Sources */,
+				C8C826791F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift in Sources */,
 				C85C9D511F62BAB200B889B8 /* ChallengesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

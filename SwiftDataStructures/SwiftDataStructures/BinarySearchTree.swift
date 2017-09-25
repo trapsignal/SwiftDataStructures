@@ -7,6 +7,7 @@
 
 // MARK: - BinarySearchTree
 
+public
 class BinarySearchTree<Value: Comparable> {
 
     // MARK: Properties
@@ -15,6 +16,7 @@ class BinarySearchTree<Value: Comparable> {
 
     // MARK: Public API
 
+    public
     func add(_ value: Value) {
         if let root = root {
             root.add(value)
@@ -25,12 +27,20 @@ class BinarySearchTree<Value: Comparable> {
         }
     }
 
+    public
     func remove(_ value: Value) {
         root?.remove(value)
     }
 
+    public
     func contains(_ value: Value) -> Bool {
         return root?.contains(value) ?? false
+    }
+
+    // MARK: Internal API
+
+    func node(for value: Value) -> Node<Value>? {
+        return root?.node(for: value)
     }
 
 }
@@ -125,6 +135,17 @@ class Node<Value: Comparable> {
         }
     }
 
+    fileprivate
+    func node(for value: Value) -> Node<Value>? {
+        if value == self.value {
+            return self
+        } else if value < self.value {
+            return left?.node(for: value)
+        } else {
+            return right?.node(for: value)
+        }
+    }
+
     // MARK: Implementation
 
     private
@@ -173,6 +194,14 @@ class Node<Value: Comparable> {
         if parent == nil {
             onBecomingRoot(self)
         }
+    }
+
+    func printSelf(_ level: Int = 0, isLeft: Bool? = nil) {
+        let tabs = String(repeating: "\t", count: level)
+        let place = isLeft.map { $0 ? "left" : "right" } ?? "root"
+        print("\(tabs)\(place): value: \(value)")
+        left?.printSelf(level + 1, isLeft: true)
+        right?.printSelf(level + 1, isLeft: false)
     }
 
 }
