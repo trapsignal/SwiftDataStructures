@@ -5,7 +5,41 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
+// MARK: - BinarySearchTree
+
+class BinarySearchTree<Value: Comparable> {
+
+    // MARK: Properties
+
+    var root: Node<Value>?
+
+    // MARK: Public API
+
+    func add(_ value: Value) {
+        if let root = root {
+            root.add(value)
+        } else {
+            root = Node(value, parent: nil, onBecomingRoot: { [weak self] in
+                self?.root = $0
+            })
+        }
+    }
+
+    func remove(_ value: Value) {
+        root?.remove(value)
+    }
+
+    func contains(_ value: Value) -> Bool {
+        return root?.contains(value) ?? false
+    }
+
+}
+
+// MARK: - Node
+
 class Node<Value: Comparable> {
+
+    // MARK: Properties
 
     var value: Value
     var left: Node?
@@ -19,6 +53,27 @@ class Node<Value: Comparable> {
         }
     }
 
+    private
+    var minimumNode: Node {
+        if let left = left {
+            return left.minimumNode
+        }
+
+        return self
+    }
+
+    private
+    var maximumNode: Node {
+        if let right = right {
+            return right.maximumNode
+        }
+
+        return self
+    }
+
+    // MARK: Initialization
+
+    fileprivate
     init(_ value: Value, parent: Node?, onBecomingRoot: @escaping (Node?) -> Void) {
         self.value = value
         self.parent = parent
@@ -27,6 +82,9 @@ class Node<Value: Comparable> {
         updateParent(with: parent)
     }
 
+    // MARK: File Private API
+
+    fileprivate
     func add(_ value: Value) {
         if value < self.value {
             if let left = self.left {
@@ -45,6 +103,7 @@ class Node<Value: Comparable> {
         }
     }
 
+    fileprivate
     func contains(_ value: Value) -> Bool {
         if value == self.value {
             return true
@@ -56,15 +115,17 @@ class Node<Value: Comparable> {
     }
 
     fileprivate
-    static func remove(_ value: Value, from node: Node) {
-        if value < node.value, let left = node.left {
-            remove(value, from: left)
-        } else if value > node.value, let right = node.right {
-            remove(value, from: right)
-        } else if value == node.value {
-            node.remove()
+    func remove(_ value: Value) {
+        if value < self.value {
+            left?.remove(value)
+        } else if value > self.value {
+            right?.remove(value)
+        } else if value == self.value {
+            remove()
         }
     }
+
+    // MARK: Implementation
 
     private
     func remove() {
@@ -92,6 +153,7 @@ class Node<Value: Comparable> {
         }
     }
 
+    private
     func replace(with otherNode: Node?) {
         if let parent = parent {
             if self === parent.left {
@@ -99,7 +161,7 @@ class Node<Value: Comparable> {
             } else if self === parent.right {
                 parent.right = otherNode
             } else {
-                assertionFailure("Tree item \(self) should be either left or right child of its parent \(parent)")
+                assertionFailure("Node \(self) should be either left or right child of its parent \(parent)")
             }
         }
 
@@ -111,50 +173,6 @@ class Node<Value: Comparable> {
         if parent == nil {
             onBecomingRoot(self)
         }
-    }
-
-    private
-    var minimumNode: Node {
-        if let left = left {
-            return left.minimumNode
-        }
-
-        return self
-    }
-
-    private
-    var maximumNode: Node {
-        if let right = right {
-            return right.maximumNode
-        }
-
-        return self
-    }
-
-}
-
-class BinarySearchTree<Value: Comparable> {
-
-    var root: Node<Value>?
-
-    func add(_ value: Value) {
-        if let root = root {
-            root.add(value)
-        } else {
-            root = Node(value, parent: nil, onBecomingRoot: { [weak self] in
-                self?.root = $0
-            })
-        }
-    }
-
-    func remove(_ value: Value) {
-        if let root = root {
-            Node.remove(value, from: root)
-        }
-    }
-
-    func contains(_ value: Value) -> Bool {
-        return root?.contains(value) ?? false
     }
 
 }
