@@ -5,27 +5,11 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-class TreeNode<Value> {
-
-    let value: Value
-    var left: TreeNode?
-    var right: TreeNode?
-
-    var isLeaf: Bool {
-        return left == nil && right == nil
-    }
-
-    init(_ value: Value, left: TreeNode? = nil, right: TreeNode? = nil) {
-        self.value = value
-        self.left = left
-        self.right = right
-    }
-
-}
+import SwiftDataStructures
 
 typealias HuffmanPair = (character: Character, frequency: Int)
 
-typealias HuffmanTreeNode = TreeNode<HuffmanPair>
+typealias HuffmanTreeNode = BinaryTreeNode<HuffmanPair>
 
 func decode(root: HuffmanTreeNode, input: [Int]) -> String {
     var decodedCharacters: [Character] = []

@@ -11,6 +11,7 @@
 		C802D90B1F75356E00AA3BFA /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */; };
 		C802D90D1F7542EB00AA3BFA /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */; };
 		C802D90F1F75500200AA3BFA /* BinarySearchTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */; };
+		C83C612F1F7A493D004B7D95 /* BinaryTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C612E1F7A493D004B7D95 /* BinaryTreeNode.swift */; };
 		C87593F31F59DDCD0065A34D /* OrderedDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87593F21F59DDCD0065A34D /* OrderedDictionaryTests.swift */; };
 		C87593FF1F5EEDE50065A34D /* SwiftDataStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = C87593FD1F5EEDE50065A34D /* SwiftDataStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C87594031F5EEDED0065A34D /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87593F41F5D9B360065A34D /* Mapping.swift */; };
@@ -61,6 +62,7 @@
 		C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
 		C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTreeTests.swift; sourceTree = "<group>"; };
+		C83C612E1F7A493D004B7D95 /* BinaryTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeNode.swift; sourceTree = "<group>"; };
 		C86147CD1F50577900CC7C91 /* HashTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashTable.swift; sourceTree = "<group>"; };
 		C87593F01F59C19A0065A34D /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		C87593F21F59DDCD0065A34D /* OrderedDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionaryTests.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				C802D9061F7531DD00AA3BFA /* Queue.swift */,
 				C802D90A1F75356E00AA3BFA /* PriorityQueue.swift */,
 				C802D90C1F7542EB00AA3BFA /* BinarySearchTree.swift */,
+				C83C612E1F7A493D004B7D95 /* BinaryTreeNode.swift */,
 			);
 			path = SwiftDataStructures;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				C87594081F5EEDFD0065A34D /* HashTable.swift in Sources */,
 				C87594061F5EEDF70065A34D /* HashTableBag.swift in Sources */,
 				C802D90D1F7542EB00AA3BFA /* BinarySearchTree.swift in Sources */,
+				C83C612F1F7A493D004B7D95 /* BinaryTreeNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

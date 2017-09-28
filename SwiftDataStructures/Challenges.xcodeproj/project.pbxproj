@@ -12,6 +12,10 @@
 		C802D9031F752BCD00AA3BFA /* TreeInorderTraversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D9021F752BCD00AA3BFA /* TreeInorderTraversal.swift */; };
 		C802D9051F752DB800AA3BFA /* TreeHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D9041F752DB800AA3BFA /* TreeHeight.swift */; };
 		C802D9091F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802D9081F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift */; };
+		C83C61311F7A49F7004B7D95 /* TreeIsSearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C61301F7A49F7004B7D95 /* TreeIsSearchTree.swift */; };
+		C83C61331F7A4B39004B7D95 /* TreeIsSearchTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C61321F7A4B39004B7D95 /* TreeIsSearchTreeTests.swift */; };
+		C83C61351F7A586A004B7D95 /* JennySubtrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C61341F7A586A004B7D95 /* JennySubtrees.swift */; };
+		C83C61371F7A58FA004B7D95 /* JennySubtreesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C61361F7A58FA004B7D95 /* JennySubtreesTests.swift */; };
 		C85C9D4C1F62BAB200B889B8 /* Challenges.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C9D421F62BAB200B889B8 /* Challenges.framework */; };
 		C85C9D511F62BAB200B889B8 /* ChallengesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85C9D501F62BAB200B889B8 /* ChallengesTests.swift */; };
 		C85C9D531F62BAB200B889B8 /* Challenges.h in Headers */ = {isa = PBXBuildFile; fileRef = C85C9D451F62BAB200B889B8 /* Challenges.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +46,10 @@
 		C802D9021F752BCD00AA3BFA /* TreeInorderTraversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeInorderTraversal.swift; sourceTree = "<group>"; };
 		C802D9041F752DB800AA3BFA /* TreeHeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeHeight.swift; sourceTree = "<group>"; };
 		C802D9081F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeBreadthFirstTraversal.swift; sourceTree = "<group>"; };
+		C83C61301F7A49F7004B7D95 /* TreeIsSearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeIsSearchTree.swift; sourceTree = "<group>"; };
+		C83C61321F7A4B39004B7D95 /* TreeIsSearchTreeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeIsSearchTreeTests.swift; sourceTree = "<group>"; };
+		C83C61341F7A586A004B7D95 /* JennySubtrees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JennySubtrees.swift; sourceTree = "<group>"; };
+		C83C61361F7A58FA004B7D95 /* JennySubtreesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JennySubtreesTests.swift; sourceTree = "<group>"; };
 		C85C9D421F62BAB200B889B8 /* Challenges.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Challenges.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85C9D451F62BAB200B889B8 /* Challenges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Challenges.h; sourceTree = "<group>"; };
 		C85C9D461F62BAB200B889B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 			children = (
 				C85C9D5B1F62BB5900B889B8 /* Supporting Files */,
 				C8C826721F79199400CEB88A /* HuffmanDecoding.swift */,
+				C83C61341F7A586A004B7D95 /* JennySubtrees.swift */,
 				C85C9D5C1F62BB7500B889B8 /* TreeTopView.swift */,
 				C802D8FE1F75127500AA3BFA /* TreePreorderTraversal.swift */,
 				C802D9001F7529A300AA3BFA /* TreePostorderTraversal.swift */,
@@ -101,6 +110,7 @@
 				C802D9041F752DB800AA3BFA /* TreeHeight.swift */,
 				C802D9081F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift */,
 				C8C826761F7921D800CEB88A /* TreeLowestCommonAncestor.swift */,
+				C83C61301F7A49F7004B7D95 /* TreeIsSearchTree.swift */,
 			);
 			path = Challenges;
 			sourceTree = "<group>";
@@ -110,7 +120,9 @@
 			children = (
 				C85C9D501F62BAB200B889B8 /* ChallengesTests.swift */,
 				C8C826741F791EBD00CEB88A /* HuffmanDecodingTests.swift */,
+				C83C61361F7A58FA004B7D95 /* JennySubtreesTests.swift */,
 				C8C826781F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift */,
+				C83C61321F7A4B39004B7D95 /* TreeIsSearchTreeTests.swift */,
 				C85C9D521F62BAB200B889B8 /* Info.plist */,
 			);
 			path = ChallengesTests;
@@ -263,7 +275,9 @@
 				C802D9011F7529A300AA3BFA /* TreePostorderTraversal.swift in Sources */,
 				C802D9091F75341C00AA3BFA /* TreeBreadthFirstTraversal.swift in Sources */,
 				C802D8FF1F75127500AA3BFA /* TreePreorderTraversal.swift in Sources */,
+				C83C61311F7A49F7004B7D95 /* TreeIsSearchTree.swift in Sources */,
 				C8C826771F7921D800CEB88A /* TreeLowestCommonAncestor.swift in Sources */,
+				C83C61351F7A586A004B7D95 /* JennySubtrees.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +288,8 @@
 				C8C826751F791EBD00CEB88A /* HuffmanDecodingTests.swift in Sources */,
 				C8C826791F79373E00CEB88A /* TreeLowestCommonAncestorTests.swift in Sources */,
 				C85C9D511F62BAB200B889B8 /* ChallengesTests.swift in Sources */,
+				C83C61331F7A4B39004B7D95 /* TreeIsSearchTreeTests.swift in Sources */,
+				C83C61371F7A58FA004B7D95 /* JennySubtreesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +327,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -378,7 +394,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -525,12 +541,48 @@
 		C8C188591F62BA1F00A954B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
 		C8C1885A1F62BA1F00A954B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 			};
 			name = Release;
 		};
