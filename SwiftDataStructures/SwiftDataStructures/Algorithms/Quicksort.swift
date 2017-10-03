@@ -5,25 +5,25 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension Array where Element: Comparable {
+extension MutableCollection where Element: Comparable {
 
     private
-    func getPivot(startIndex: Int, endIndex: Int) -> Element {
-        return self[endIndex - 1]
+    func getPivot(startIndex: Index, endIndex: Index) -> Element {
+        return self[index(endIndex, offsetBy: -1)]
     }
 
     private mutating
-    func partition(pivot: Element, startIndex: Int, endIndex: Int) -> Int {
+    func partition(pivot: Element, startIndex: Index, endIndex: Index) -> Index {
         var i = startIndex
-        var j = endIndex - 1
+        var j = index(endIndex, offsetBy: -1)
 
         while i < j {
-            while i < endIndex - 1 && self[i] < pivot {
-                i += 1
+            while i < index(endIndex, offsetBy: -1) && self[i] < pivot {
+                i = index(after: i)
             }
 
             while j > startIndex && self[j] > pivot {
-                j -= 1
+                j = index(j, offsetBy: -1)
             }
 
             if i < j {
@@ -33,10 +33,10 @@ extension Array where Element: Comparable {
                     (i, j) = partitionElementsBetweenPivots(pivotIndex1: i, pivotIndex2: j)
                 } else {
                     if self[i] != pivot {
-                        i += 1
+                        i = index(after: i)
                     }
                     if self[j] != pivot {
-                        j -= 1
+                        j = index(j, offsetBy: -1)
                     }
                 }
             }
@@ -46,7 +46,7 @@ extension Array where Element: Comparable {
     }
 
     private mutating
-    func partitionElementsBetweenPivots(pivotIndex1: Int, pivotIndex2: Int) -> (Int, Int) {
+    func partitionElementsBetweenPivots(pivotIndex1: Index, pivotIndex2: Index) -> (Index, Index) {
         assert(self[pivotIndex1] == self[pivotIndex2])
 
         let pivot = self[pivotIndex1]
@@ -54,15 +54,15 @@ extension Array where Element: Comparable {
         var i = pivotIndex1
         var j = pivotIndex2
 
-        if abs(i - j) <= 1 {
+        if abs(distance(from: i, to: j)) <= 1 {
             i = j
         } else {
-            let next = i + 1
-            let prev = j - 1
+            let next = index(after: i)
+            let prev = index(j, offsetBy: -1)
             if next < endIndex, self[next] > pivot {
-                i += 1
+                i = index(after: i)
             } else if prev >= startIndex, self[prev] < pivot {
-                j -= 1
+                j = index(j, offsetBy: -1)
             } else {
                 if next < endIndex {
                     swapAt(i, next)
@@ -79,11 +79,11 @@ extension Array where Element: Comparable {
     }
 
     public mutating
-    func quicksort(startIndex: Int? = nil, endIndex: Int? = nil) {
+    func quicksort(startIndex: Index? = nil, endIndex: Index? = nil) {
         let start = startIndex ?? self.startIndex
         let end = endIndex ?? self.endIndex
 
-        guard start < end - 1 else {
+        guard start < index(end, offsetBy: -1) else {
             return
         }
 
@@ -92,14 +92,14 @@ extension Array where Element: Comparable {
         let pivotIndex = partition(pivot: pivot, startIndex: start, endIndex: end)
 
         quicksort(startIndex: start, endIndex: pivotIndex)
-        quicksort(startIndex: Swift.min(pivotIndex + 1, end), endIndex: end)
+        quicksort(startIndex: Swift.min(index(after: pivotIndex), end), endIndex: end)
     }
 
     public
-    func quicksorted() -> [Element] {
-        var newArray = self
-        newArray.quicksort()
-        return newArray
+    func quicksorted() -> Self {
+        var newCollection = self
+        newCollection.quicksort()
+        return newCollection
     }
 
 }
