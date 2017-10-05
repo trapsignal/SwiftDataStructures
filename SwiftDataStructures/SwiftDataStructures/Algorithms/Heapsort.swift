@@ -21,7 +21,6 @@ class BinaryHeap<Value: Comparable> {
 
     init<S: Sequence>(_ items: S) where S.Iterator.Element == Value {
         self.items = Array(items)
-        build()
     }
 
     func leftIndex(for index: Int) -> Int {
@@ -46,7 +45,11 @@ class BinaryHeap<Value: Comparable> {
         return items.startIndex ..< items.endIndex
     }
 
-    func heapify(at index: Int, range: Range<Int>? = nil) {
+    func heapify(
+        by areInIncreasingOrder: (Value, Value) throws -> Bool,
+        at index: Int,
+        range: Range<Int>? = nil
+    ) rethrows {
         let range = range ?? defaultRange
 
         guard var largest = items.element(at: index) else {
@@ -57,55 +60,61 @@ class BinaryHeap<Value: Comparable> {
 
         if
             let left = self.left(for: index, range: range),
-            largest <= left {
+            try areInIncreasingOrder(largest, left) {
             largest = left
             largestIndex = leftIndex(for: index)
         }
 
         if
             let right = self.right(for: index, range: range),
-            largest <= right {
+            try areInIncreasingOrder(largest, right) {
             largest = right
             largestIndex = rightIndex(for: index)
         }
 
         if largestIndex != index {
             items.swapAt(index, largestIndex)
-            heapify(at: largestIndex, range: range)
+            try heapify(by: areInIncreasingOrder, at: largestIndex, range: range)
         }
     }
 
-    func build() {
+    func build(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
         for i in (0 ..< items.count / 2).reversed() {
-            heapify(at: i)
+            try heapify(by: areInIncreasingOrder, at: i)
         }
 
-        checkSelf()
+        try checkSelf(by: areInIncreasingOrder)
     }
 
-    func checkSelf() {
+    func checkSelf(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
         if !items.isEmpty {
-            check(at: 0)
+            try check(by: areInIncreasingOrder, at: 0)
         }
     }
 
-    func check(at index: Int) {
+    func check(by areInIncreasingOrder: (Value, Value) throws -> Bool, at index: Int) rethrows {
         guard let value = items.element(at: index) else {
             return assertionFailure()
         }
 
-        if let left = self.left(for: index, range: defaultRange) {
-            assert(value >= left)
-            check(at: leftIndex(for: index))
+        if let left = self.left(for: index, range: defaultRange), left != value {
+            let isLeftLess = try areInIncreasingOrder(left, value)
+            assert(isLeftLess)
+            try check(by: areInIncreasingOrder, at: leftIndex(for: index))
         }
 
-        if let right = self.right(for: index, range: defaultRange) {
-            assert(value >= right)
-            check(at: rightIndex(for: index))
+        if let right = self.right(for: index, range: defaultRange), right != value {
+            let isRightLess = try areInIncreasingOrder(right, value)
+            assert(isRightLess)
+            try check(by: areInIncreasingOrder, at: rightIndex(for: index))
         }
     }
 
-    func exchangeWithRoot(at index: Int, range: Range<Int>) {
+    func exchangeWithRoot(
+        by areInIncreasingOrder: (Value, Value) throws -> Bool,
+        at index: Int,
+        range: Range<Int>
+    ) rethrows {
         guard
             let max = items.element(at: 0),
             let value = items.element(at: index)
@@ -114,14 +123,14 @@ class BinaryHeap<Value: Comparable> {
         }
 
         items[0] = value
-        heapify(at: 0, range: range)
+        try heapify(by: areInIncreasingOrder, at: 0, range: range)
         items[index] = max
     }
 
-    func sort() {
+    func sort(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
         for i in (0 ..< items.count).reversed() {
             let range: Range<Int> = 0 ..< i + 1
-            exchangeWithRoot(at: i, range: range)
+            try exchangeWithRoot(by: areInIncreasingOrder, at: i, range: range)
         }
     }
 
@@ -130,10 +139,18 @@ class BinaryHeap<Value: Comparable> {
 extension Array where Element: Comparable {
 
     public mutating
-    func heapsort() {
+    func heapsort(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
         let heap = BinaryHeap<Element>(self)
-        heap.sort()
+        try heap.build(by: areInIncreasingOrder)
+        try heap.sort(by: areInIncreasingOrder)
         self = heap.items
+    }
+
+    public
+    func heapsorted(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows -> Array {
+        var newArray = self
+        try newArray.heapsort(by: areInIncreasingOrder)
+        return newArray
     }
 
 }
