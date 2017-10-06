@@ -58,12 +58,12 @@ extension Collection {
 // MARK: - BinaryHeap
 
 private
-class BinaryHeap<Value: Comparable> {
+class BinaryHeap<Element: Comparable> {
 
     // MARK: Properties
 
     private(set)
-    var items: [Value] = []
+    var items: [Element] = []
 
     private
     var defaultRange: Range<Int> {
@@ -72,14 +72,14 @@ class BinaryHeap<Value: Comparable> {
 
     // MARK: Initialization
 
-    init<S: Sequence>(_ items: S) where S.Iterator.Element == Value {
+    init<S: Sequence>(_ items: S) where S.Iterator.Element == Element {
         self.items = Array(items)
     }
 
     // MARK: File Level API
 
     fileprivate
-    func build(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
+    func build(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows {
         for i in (0 ..< items.count / 2).reversed() {
             try heapify(by: areInIncreasingOrder, at: i)
         }
@@ -88,7 +88,7 @@ class BinaryHeap<Value: Comparable> {
     }
 
     fileprivate
-    func sort(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
+    func sort(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows {
         for i in (0 ..< items.count).reversed() {
             let range: Range<Int> = 0 ..< i + 1
             try exchangeWithRoot(by: areInIncreasingOrder, at: i, range: range)
@@ -103,7 +103,7 @@ class BinaryHeap<Value: Comparable> {
     }
 
     private
-    func left(for index: Int, range: Range<Int>) -> Value? {
+    func left(for index: Int, range: Range<Int>) -> Element? {
         let leftIndex = self.leftIndex(for: index)
         return items.element(at: leftIndex, within: range)
     }
@@ -114,74 +114,63 @@ class BinaryHeap<Value: Comparable> {
     }
 
     private
-    func right(for index: Int, range: Range<Int>) -> Value? {
+    func right(for index: Int, range: Range<Int>) -> Element? {
         let rightIndex = self.rightIndex(for: index)
         return items.element(at: rightIndex, within: range)
     }
 
     private
     func heapify(
-        by areInIncreasingOrder: (Value, Value) throws -> Bool,
+        by areInIncreasingOrder: (Element, Element) throws -> Bool,
         at index: Int,
         range: Range<Int>? = nil
     ) rethrows {
         let range = range ?? defaultRange
 
-        guard var largest = items.element(at: index) else {
-            return assertionFailure()
-        }
+        let largestIndex = try [
+            (index, items.element(at: index)),
+            (leftIndex(for: index), left(for: index, range: range)),
+            (rightIndex(for: index), right(for: index, range: range))
+        ]
+            .flatMap { pair in pair.1.map { item in (pair.0, item) } }
+            .max { try areInIncreasingOrder($0.1, $1.1) }?
+            .0
 
-        var largestIndex = index
-
-        if
-            let left = self.left(for: index, range: range),
-            try areInIncreasingOrder(largest, left) {
-            largest = left
-            largestIndex = leftIndex(for: index)
-        }
-
-        if
-            let right = self.right(for: index, range: range),
-            try areInIncreasingOrder(largest, right) {
-            largest = right
-            largestIndex = rightIndex(for: index)
-        }
-
-        if largestIndex != index {
+        if let largestIndex = largestIndex, largestIndex != index {
             items.swapAt(index, largestIndex)
             try heapify(by: areInIncreasingOrder, at: largestIndex, range: range)
         }
     }
 
     private
-    func checkSelf(by areInIncreasingOrder: (Value, Value) throws -> Bool) rethrows {
+    func checkSelf(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows {
         if !items.isEmpty {
             try check(by: areInIncreasingOrder, at: 0)
         }
     }
 
     private
-    func check(by areInIncreasingOrder: (Value, Value) throws -> Bool, at index: Int) rethrows {
+    func check(by areInIncreasingOrder: (Element, Element) throws -> Bool, at index: Int) rethrows {
         guard let value = items.element(at: index) else {
             return assertionFailure()
         }
 
-        if let left = self.left(for: index, range: defaultRange), left != value {
-            let isLeftLess = try areInIncreasingOrder(left, value)
-            assert(isLeftLess)
-            try check(by: areInIncreasingOrder, at: leftIndex(for: index))
-        }
-
-        if let right = self.right(for: index, range: defaultRange), right != value {
-            let isRightLess = try areInIncreasingOrder(right, value)
-            assert(isRightLess)
-            try check(by: areInIncreasingOrder, at: rightIndex(for: index))
-        }
+        try [
+            (leftIndex(for: index), left(for: index, range: defaultRange)),
+            (rightIndex(for: index), right(for: index, range: defaultRange))
+        ]
+            .flatMap { pair in pair.1.map { item in (pair.0, item) } }
+            .filter { $0.1 != value }
+            .forEach { pair in
+                let isLess = try areInIncreasingOrder(pair.1, value)
+                assert(isLess)
+                try check(by: areInIncreasingOrder, at: pair.0)
+            }
     }
 
     private
     func exchangeWithRoot(
-        by areInIncreasingOrder: (Value, Value) throws -> Bool,
+        by areInIncreasingOrder: (Element, Element) throws -> Bool,
         at index: Int,
         range: Range<Int>
     ) rethrows {
