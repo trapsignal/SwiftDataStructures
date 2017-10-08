@@ -42,6 +42,8 @@
 		C8D11EE31F5FDA6800F38042 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D11ED31F5FD84200F38042 /* Item.swift */; };
 		C8D11EE81F5FDBA400F38042 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D11EE61F5FDB6200F38042 /* Leaf.swift */; };
 		C8D11EEB1F5FDBFC00F38042 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D11EE91F5FDBE200F38042 /* Node.swift */; };
+		C8D22BD61F87D28E00621CEE /* Insertsort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D22BD51F87D28E00621CEE /* Insertsort.swift */; };
+		C8D22BD81F8937AC00621CEE /* InsertsortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D22BD71F8937AC00621CEE /* InsertsortTests.swift */; };
 		D317BB9196EC86BB32B58E68 /* Pods_SwiftDataStructuresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5883619CB9289002EAD5D40E /* Pods_SwiftDataStructuresTests.framework */; };
 		F15E63C4E0D4759FCE0E9D8C /* Pods_SwiftDataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106ABE5D8BA362971D13F8AD /* Pods_SwiftDataStructures.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +112,8 @@
 		C8D11EDD1F5FDA5600F38042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RedBlackTree/Info.plist; sourceTree = "<group>"; };
 		C8D11EE61F5FDB6200F38042 /* Leaf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaf.swift; path = RedBlackTree/Leaf.swift; sourceTree = "<group>"; };
 		C8D11EE91F5FDBE200F38042 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Node.swift; path = RedBlackTree/Node.swift; sourceTree = "<group>"; };
+		C8D22BD51F87D28E00621CEE /* Insertsort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insertsort.swift; sourceTree = "<group>"; };
+		C8D22BD71F8937AC00621CEE /* InsertsortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertsortTests.swift; sourceTree = "<group>"; };
 		EB3EA13FBD3B0FD66A076507 /* Pods-SwiftDataStructuresTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDataStructuresTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDataStructuresTests/Pods-SwiftDataStructuresTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +216,7 @@
 			children = (
 				C802D90E1F75500200AA3BFA /* BinarySearchTreeTests.swift */,
 				C8839D7B1F8532FB008497B7 /* HeapsortTests.swift */,
+				C8D22BD71F8937AC00621CEE /* InsertsortTests.swift */,
 				C88096A21F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift */,
 				C87932501F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift */,
 				C87932351F4D8D5A00C1C45A /* ChainingHashTableTests.swift */,
@@ -231,6 +236,7 @@
 			children = (
 				C8BC1B811F826EAB007BD1EE /* Quicksort.swift */,
 				C8839D791F852AEF008497B7 /* Heapsort.swift */,
+				C8D22BD51F87D28E00621CEE /* Insertsort.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D22BD61F87D28E00621CEE /* Insertsort.swift in Sources */,
 				C875940C1F5EEE0A0065A34D /* ChainingDictionary.swift in Sources */,
 				C8BC1B821F826EAB007BD1EE /* Quicksort.swift in Sources */,
 				C87594031F5EEDED0065A34D /* Mapping.swift in Sources */,
@@ -563,6 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D22BD81F8937AC00621CEE /* InsertsortTests.swift in Sources */,
 				C88096A41F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift in Sources */,
 				C8BC1B871F827D5B007BD1EE /* QuicksortTests.swift in Sources */,
 				C87932511F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift in Sources */,
