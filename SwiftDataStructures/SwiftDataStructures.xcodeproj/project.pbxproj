@@ -42,6 +42,8 @@
 		C8D11EE81F5FDBA400F38042 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D11EE61F5FDB6200F38042 /* Leaf.swift */; };
 		C8D11EEB1F5FDBFC00F38042 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D11EE91F5FDBE200F38042 /* Node.swift */; };
 		C8D22BD61F87D28E00621CEE /* Insertsort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D22BD51F87D28E00621CEE /* Insertsort.swift */; };
+		C8D22BDA1F8B871700621CEE /* Bubblesort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D22BD91F8B871700621CEE /* Bubblesort.swift */; };
+		C8D22BDD1F8B8C1800621CEE /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D22BDC1F8B8C1800621CEE /* CollectionExtensions.swift */; };
 		D317BB9196EC86BB32B58E68 /* Pods_SwiftDataStructuresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5883619CB9289002EAD5D40E /* Pods_SwiftDataStructuresTests.framework */; };
 		F15E63C4E0D4759FCE0E9D8C /* Pods_SwiftDataStructures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106ABE5D8BA362971D13F8AD /* Pods_SwiftDataStructures.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +112,8 @@
 		C8D11EE61F5FDB6200F38042 /* Leaf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaf.swift; path = RedBlackTree/Leaf.swift; sourceTree = "<group>"; };
 		C8D11EE91F5FDBE200F38042 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Node.swift; path = RedBlackTree/Node.swift; sourceTree = "<group>"; };
 		C8D22BD51F87D28E00621CEE /* Insertsort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insertsort.swift; sourceTree = "<group>"; };
+		C8D22BD91F8B871700621CEE /* Bubblesort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bubblesort.swift; sourceTree = "<group>"; };
+		C8D22BDC1F8B8C1800621CEE /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		EB3EA13FBD3B0FD66A076507 /* Pods-SwiftDataStructuresTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftDataStructuresTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftDataStructuresTests/Pods-SwiftDataStructuresTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +188,7 @@
 		C879321F1F4D8D5A00C1C45A /* SwiftDataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				C8D22BDB1F8B8BF500621CEE /* Extensions */,
 				C8BC1B801F826E4A007BD1EE /* Algorithms */,
 				C87594101F5EEF950065A34D /* Supporting Files */,
 				C8D11ED21F5FD7DB00F38042 /* RedBlackTree */,
@@ -231,6 +236,7 @@
 				C8BC1B811F826EAB007BD1EE /* Quicksort.swift */,
 				C8839D791F852AEF008497B7 /* Heapsort.swift */,
 				C8D22BD51F87D28E00621CEE /* Insertsort.swift */,
+				C8D22BD91F8B871700621CEE /* Bubblesort.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -262,6 +268,14 @@
 				C8D11EDD1F5FDA5600F38042 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C8D22BDB1F8B8BF500621CEE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C8D22BDC1F8B8C1800621CEE /* CollectionExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F3956D2E3FA76BF7BE7F905B /* Frameworks */ = {
@@ -539,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8D22BD61F87D28E00621CEE /* Insertsort.swift in Sources */,
+				C8D22BDD1F8B8C1800621CEE /* CollectionExtensions.swift in Sources */,
 				C875940C1F5EEE0A0065A34D /* ChainingDictionary.swift in Sources */,
 				C8BC1B821F826EAB007BD1EE /* Quicksort.swift in Sources */,
 				C87594031F5EEDED0065A34D /* Mapping.swift in Sources */,
@@ -553,6 +568,7 @@
 				C875940A1F5EEE040065A34D /* OpenAddressingSet.swift in Sources */,
 				C875940E1F5EEE0F0065A34D /* ChainingHashTable.swift in Sources */,
 				C875940D1F5EEE0D0065A34D /* ChainingSet.swift in Sources */,
+				C8D22BDA1F8B871700621CEE /* Bubblesort.swift in Sources */,
 				C87594081F5EEDFD0065A34D /* HashTable.swift in Sources */,
 				C87594061F5EEDF70065A34D /* HashTableBag.swift in Sources */,
 				C802D90D1F7542EB00AA3BFA /* BinarySearchTree.swift in Sources */,

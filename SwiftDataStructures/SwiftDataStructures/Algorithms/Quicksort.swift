@@ -45,11 +45,6 @@ extension MutableCollection where Element: Comparable {
     // MARK: - Implementation
 
     private
-    func index(before i: Index) -> Index {
-        return index(i, offsetBy: -1)
-    }
-
-    private
     func getPivot(startIndex: Index, endIndex: Index) -> Element {
         return self[index(before: endIndex)]
     }
