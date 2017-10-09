@@ -5,24 +5,58 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension Array where Element: Comparable {
+extension MutableCollection where Element: Comparable {
 
     public mutating
-    func insertsort() {
-        for oldIndex in startIndex ..< endIndex {
+    func insertsort(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
+        var oldIndex = startIndex
+        while oldIndex != endIndex {
             let element = self[oldIndex]
-            if let newIndex = (startIndex ..< oldIndex).first(where: { element < self[$0] }) {
-                let movedElement = remove(at: oldIndex)
-                insert(movedElement, at: newIndex)
+
+            var newIndex = startIndex
+            while newIndex != oldIndex {
+                if try areInIncreasingOrder(element, self[newIndex]) {
+                    moveElement(from: oldIndex, to: newIndex)
+                    break
+                }
+                newIndex = index(after: newIndex)
             }
+
+            oldIndex = index(after: oldIndex)
         }
     }
 
     public
-    func insertsorted() -> [Element] {
-        var newArray = self
-        newArray.insertsort()
-        return newArray
+    func insertsorted(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows -> Self {
+        var newCollection = self
+        try newCollection.insertsort(by: areInIncreasingOrder)
+        return newCollection
+    }
+
+}
+
+private
+extension MutableCollection where Element: Comparable {
+
+    mutating
+    func moveElement(from oldIndex: Index, to newIndex: Index) {
+        guard oldIndex != newIndex else {
+            return
+        }
+
+        let element = self[oldIndex]
+
+        let isMovingBack = newIndex < oldIndex
+        let forwardOffset: IndexDistance = isMovingBack ? -1 : 1
+        let backwardOffset: IndexDistance = -forwardOffset
+
+        var index = self.index(oldIndex, offsetBy: forwardOffset)
+        while index != self.index(newIndex, offsetBy: forwardOffset) {
+            self[self.index(index, offsetBy: backwardOffset)] = self[index]
+            index = self.index(index, offsetBy: forwardOffset)
+        }
+
+        self[newIndex] = element
     }
 
 }
