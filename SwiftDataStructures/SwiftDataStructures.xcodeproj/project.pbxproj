@@ -30,6 +30,7 @@
 		C87932491F4D907500C1C45A /* ChainingDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87932481F4D907500C1C45A /* ChainingDictionaryTests.swift */; };
 		C879324B1F4D90E200C1C45A /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879324A1F4D90E200C1C45A /* ListTests.swift */; };
 		C87932511F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87932501F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift */; };
+		C87E054B1F94C1BC00A8B3DF /* Selectionsort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87E054A1F94C1BC00A8B3DF /* Selectionsort.swift */; };
 		C88096A41F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88096A21F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift */; };
 		C88096A51F4DAAD000AADFA5 /* SomeStupidKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88096A31F4DAAD000AADFA5 /* SomeStupidKey.swift */; };
 		C8839D7A1F852AEF008497B7 /* Heapsort.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8839D791F852AEF008497B7 /* Heapsort.swift */; };
@@ -97,6 +98,7 @@
 		C879324E1F4D917E00C1C45A /* OpenAddressingDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAddressingDictionary.swift; sourceTree = "<group>"; };
 		C87932501F4D91CC00C1C45A /* OpenAddressingHashTableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAddressingHashTableTests.swift; sourceTree = "<group>"; };
 		C87932561F4DA88E00C1C45A /* ChainingDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainingDictionary.swift; sourceTree = "<group>"; };
+		C87E054A1F94C1BC00A8B3DF /* Selectionsort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectionsort.swift; sourceTree = "<group>"; };
 		C88096A21F4DAAD000AADFA5 /* OpenAddressingDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAddressingDictionaryTests.swift; sourceTree = "<group>"; };
 		C88096A31F4DAAD000AADFA5 /* SomeStupidKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SomeStupidKey.swift; sourceTree = "<group>"; };
 		C8839D791F852AEF008497B7 /* Heapsort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heapsort.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				C8839D791F852AEF008497B7 /* Heapsort.swift */,
 				C8D22BD51F87D28E00621CEE /* Insertsort.swift */,
 				C8D22BD91F8B871700621CEE /* Bubblesort.swift */,
+				C87E054A1F94C1BC00A8B3DF /* Selectionsort.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				C875940F1F5EEE140065A34D /* List.swift in Sources */,
 				C875940B1F5EEE070065A34D /* OpenAddressingHashTable.swift in Sources */,
 				C8839D7A1F852AEF008497B7 /* Heapsort.swift in Sources */,
+				C87E054B1F94C1BC00A8B3DF /* Selectionsort.swift in Sources */,
 				C87594041F5EEDF10065A34D /* OrderedDictionary.swift in Sources */,
 				C875940A1F5EEE040065A34D /* OpenAddressingSet.swift in Sources */,
 				C875940E1F5EEE0F0065A34D /* ChainingHashTable.swift in Sources */,

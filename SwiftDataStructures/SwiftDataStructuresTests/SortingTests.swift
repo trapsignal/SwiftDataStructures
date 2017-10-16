@@ -31,6 +31,11 @@ class SortingTests: XCTestCase {
         arr4.bubblesort(by: areInIncreasingOrder)
         XCTAssertEqual(arr4, output)
         XCTAssertEqual(input.bubblesorted(by: areInIncreasingOrder), output)
+
+        var arr5 = input
+        arr5.selectionsort(by: areInIncreasingOrder)
+        XCTAssertEqual(arr5, output)
+        XCTAssertEqual(input.selectionsorted(by: areInIncreasingOrder), output)
     }
 
     func test_ascending1() {
