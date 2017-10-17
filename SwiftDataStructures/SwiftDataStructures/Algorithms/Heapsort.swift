@@ -15,7 +15,7 @@ extension MutableCollection where Element: Comparable {
         try heap.build(by: areInIncreasingOrder)
         try heap.sort(by: areInIncreasingOrder)
 
-        rewriteWith(heap.items)
+        rewrite(with: heap.items)
     }
 
     public
@@ -25,22 +25,6 @@ extension MutableCollection where Element: Comparable {
         var newCollection = self
         try newCollection.heapsort(by: areInIncreasingOrder)
         return newCollection
-    }
-
-}
-
-// MARK: - Implementation
-
-private
-extension MutableCollection where Element: Comparable {
-
-    mutating
-    func rewriteWith(_ items: [Element]) {
-        var index = startIndex
-        for i in 0 ..< items.count {
-            self[index] = items[i]
-            index = self.index(after: index)
-        }
     }
 
 }
