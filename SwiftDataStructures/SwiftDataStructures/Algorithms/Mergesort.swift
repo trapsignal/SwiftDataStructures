@@ -19,14 +19,12 @@ extension MutableCollection where Element: Comparable {
             return
         }
 
-        let middleIndex = index(range.lowerBound, offsetBy: count / 2)
+        let medianIndex = index(range.lowerBound, offsetBy: count / 2)
+        let firstRange = range.lowerBound ..< medianIndex
+        let secondRange = medianIndex ..< range.upperBound
 
-        let firstRange = range.lowerBound ..< middleIndex
         try mergesort(by: areInIncreasingOrder, range: firstRange)
-
-        let secondRange = middleIndex ..< range.upperBound
         try mergesort(by: areInIncreasingOrder, range: secondRange)
-
         try merge(by: areInIncreasingOrder, firstRange, secondRange)
     }
 
@@ -45,37 +43,39 @@ extension MutableCollection {
     mutating
     func merge(
         by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool,
-        _ firstRange: Range<Index>,
-        _ secondRange: Range<Index>
+        _ range1: Range<Index>,
+        _ range2: Range<Index>
     ) rethrows {
-        assert(!firstRange.isEmpty)
-        assert(!secondRange.isEmpty)
+        assert(!range1.isEmpty)
+        assert(!range2.isEmpty)
 
-        var first = firstRange.lowerBound
-        var second = secondRange.lowerBound
+        var index1 = range1.lowerBound
+        var index2 = range2.lowerBound
 
         var mergedArray: [Element] = []
         while true {
-            if try areInIncreasingOrder(self[first], self[second]) {
-                mergedArray.append(self[first])
-                first = index(after: first)
-                if first == firstRange.upperBound {
-                    mergedArray.append(contentsOf: self[second ..< secondRange.upperBound])
+            if try areInIncreasingOrder(self[index1], self[index2]) {
+                mergedArray.append(pop(from: &index1))
+                if index1 == range1.upperBound {
+                    mergedArray.append(contentsOf: self[index2 ..< range2.upperBound])
                     break
                 }
             } else {
-                mergedArray.append(self[second])
-                second = index(after: second)
-                if second == secondRange.upperBound {
-                    mergedArray.append(contentsOf: self[first ..< firstRange.upperBound])
+                mergedArray.append(pop(from: &index2))
+                if index2 == range2.upperBound {
+                    mergedArray.append(contentsOf: self[index1 ..< range1.upperBound])
                     break
                 }
             }
         }
 
-        let lowerBound = Swift.min(firstRange.lowerBound, secondRange.lowerBound)
-        let upperBound = Swift.max(firstRange.upperBound, secondRange.upperBound)
-        rewrite(with: mergedArray, range: lowerBound ..< upperBound)
+        rewrite(with: mergedArray, range: range1.lowerBound ..< range2.upperBound)
+    }
+
+    func pop(from index: inout Index) -> Element {
+        let element = self[index]
+        index = self.index(after: index)
+        return element
     }
 
 }
