@@ -5,13 +5,13 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension MutableCollection where Element: Comparable {
+// MARK: - Public API
 
-    // MARK: - Public API
+extension MutableCollection {
 
     public mutating
     func quicksort(
-        by areInIncreasingOrder: (Element, Element) throws -> Bool,
+        comparingBy areInIncreasingOrder: (Element, Element) throws -> Bool,
         startIndex: Index? = nil,
         endIndex: Index? = nil
     ) rethrows {
@@ -31,25 +31,77 @@ extension MutableCollection where Element: Comparable {
             endIndex: end
         )
 
-        try quicksort(by: areInIncreasingOrder, startIndex: start, endIndex: pivotIndex)
-        try quicksort(by: areInIncreasingOrder, startIndex: Swift.min(index(after: pivotIndex), end), endIndex: end)
+        try quicksort(
+            comparingBy: areInIncreasingOrder,
+            startIndex: start,
+            endIndex: pivotIndex
+        )
+        try quicksort(
+            comparingBy: areInIncreasingOrder,
+            startIndex: Swift.min(index(after: pivotIndex), end),
+            endIndex: end
+        )
     }
 
     public
-    func quicksorted(by areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows -> Self {
+    func quicksorted(comparingBy areInIncreasingOrder: (Element, Element) throws -> Bool) rethrows -> Self {
         var newCollection = self
-        try newCollection.quicksort(by: areInIncreasingOrder)
+        try newCollection.quicksort(comparingBy: areInIncreasingOrder)
         return newCollection
     }
 
-    // MARK: - Implementation
+}
 
-    private
+extension MutableCollection where Element: Comparable {
+
+    public mutating
+    func quicksort(
+        by areInIncreasingOrder: (Element, Element) throws -> Bool = (<),
+        startIndex: Index? = nil,
+        endIndex: Index? = nil
+    ) rethrows {
+        try quicksort(
+            comparingBy: areInIncreasingOrder,
+            startIndex: startIndex,
+            endIndex: endIndex
+        )
+    }
+
+    public
+    func quicksorted(
+        by areInIncreasingOrder: (Element, Element) throws -> Bool = (<)
+    ) rethrows -> Self {
+        return try quicksorted(comparingBy: areInIncreasingOrder)
+    }
+
+}
+
+// MARK: - Implementation
+
+private
+extension MutableCollection {
+
+    func notOrdered(
+        by areInIncreasingOrder: (Element, Element) throws -> Bool,
+        _ element1: Element,
+        _ element2: Element
+    ) rethrows -> Bool {
+        return try !areInIncreasingOrder(element1, element2) && !areInIncreasingOrder(element2, element1)
+    }
+
+    func ordered(
+        by areInIncreasingOrder: (Element, Element) throws -> Bool,
+        _ element1: Element,
+        _ element2: Element
+    ) rethrows -> Bool {
+        return try !notOrdered(by: areInIncreasingOrder, element1, element2)
+    }
+
     func getPivot(startIndex: Index, endIndex: Index) -> Element {
         return self[index(before: endIndex)]
     }
 
-    private mutating
+    mutating
     func partition(
         by areInIncreasingOrder: (Element, Element) throws -> Bool,
         pivot: Element,
@@ -64,24 +116,26 @@ extension MutableCollection where Element: Comparable {
                 i = index(after: i)
             }
 
-            while try (j > startIndex && !areInIncreasingOrder(self[j], pivot) && self[j] != pivot) {
+            while try (j > startIndex && areInIncreasingOrder(pivot, self[j])) {
                 j = index(before: j)
             }
 
             if i < j {
                 swapAt(i, j)
 
-                if self[i] == pivot && self[j] == pivot {
+                if
+                    try notOrdered(by: areInIncreasingOrder, self[i], pivot),
+                    try notOrdered(by: areInIncreasingOrder, self[j], pivot) {
                     (i, j) = try partitionElementsBetweenPivots(
                         by: areInIncreasingOrder,
                         pivotIndex1: i,
                         pivotIndex2: j
                     )
                 } else {
-                    if self[i] != pivot {
+                    if try ordered(by: areInIncreasingOrder, self[i], pivot) {
                         i = index(after: i)
                     }
-                    if self[j] != pivot {
+                    if try ordered(by: areInIncreasingOrder, self[j], pivot) {
                         j = index(before: j)
                     }
                 }
@@ -91,13 +145,14 @@ extension MutableCollection where Element: Comparable {
         return i
     }
 
-    private mutating
+    mutating
     func partitionElementsBetweenPivots(
         by areInIncreasingOrder: (Element, Element) throws -> Bool,
         pivotIndex1: Index,
         pivotIndex2: Index
     ) rethrows -> (Index, Index) {
-        assert(self[pivotIndex1] == self[pivotIndex2])
+        let notOrdered = try self.notOrdered(by: areInIncreasingOrder, self[pivotIndex1], self[pivotIndex2])
+        assert(notOrdered)
         assert(pivotIndex1 < pivotIndex2)
 
         let pivot = self[pivotIndex1]
@@ -110,7 +165,7 @@ extension MutableCollection where Element: Comparable {
         } else {
             let next = index(after: i)
             let prev = index(before: j)
-            if next < endIndex, try !areInIncreasingOrder(self[next], pivot), self[next] != pivot {
+            if next < endIndex, try areInIncreasingOrder(pivot, self[next]) {
                 i = index(after: i)
             } else if prev >= startIndex, try areInIncreasingOrder(self[prev], pivot) {
                 j = index(before: j)

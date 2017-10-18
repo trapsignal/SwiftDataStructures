@@ -13,29 +13,29 @@ class SortingTests: XCTestCase {
     private
     func testSort(input: [Int], output: [Int], by areInIncreasingOrder: @escaping (Int, Int) -> Bool) {
         var arr1 = input
-        arr1.insertsort(by: areInIncreasingOrder)
+        arr1.insertsort(comparingBy: areInIncreasingOrder)
         XCTAssertEqual(arr1, output)
         XCTAssertEqual(input.insertsorted(by: areInIncreasingOrder), output)
 
         var arr2 = input
-        arr2.quicksort(by: areInIncreasingOrder)
+        arr2.quicksort(comparingBy: areInIncreasingOrder)
         XCTAssertEqual(arr2, output)
-        XCTAssertEqual(input.quicksorted(by: areInIncreasingOrder), output)
+        XCTAssertEqual(input.quicksorted(comparingBy: areInIncreasingOrder), output)
 
         var arr3 = input
-        arr3.heapsort(by: areInIncreasingOrder)
+        arr3.heapsort(comparingBy: areInIncreasingOrder)
         XCTAssertEqual(arr3, output)
-        XCTAssertEqual(input.heapsorted(by: areInIncreasingOrder), output)
+        XCTAssertEqual(input.heapsorted(comparingBy: areInIncreasingOrder), output)
 
         var arr4 = input
-        arr4.bubblesort(by: areInIncreasingOrder)
+        arr4.bubblesort(comparingBy: areInIncreasingOrder)
         XCTAssertEqual(arr4, output)
-        XCTAssertEqual(input.bubblesorted(by: areInIncreasingOrder), output)
+        XCTAssertEqual(input.bubblesorted(comparingBy: areInIncreasingOrder), output)
 
         var arr5 = input
-        arr5.selectionsort(by: areInIncreasingOrder)
+        arr5.selectionsort(comparingBy: areInIncreasingOrder)
         XCTAssertEqual(arr5, output)
-        XCTAssertEqual(input.selectionsorted(by: areInIncreasingOrder), output)
+        XCTAssertEqual(input.selectionsorted(comparingBy: areInIncreasingOrder), output)
 
         var arr6 = input
         arr6.mergesort(by: areInIncreasingOrder)

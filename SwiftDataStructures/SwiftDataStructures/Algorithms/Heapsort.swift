@@ -7,10 +7,10 @@
 
 // MARK: - Heapsort
 
-extension MutableCollection where Element: Comparable {
+extension MutableCollection {
 
     public mutating
-    func heapsort(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
+    func heapsort(comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
         let heap = BinaryHeap<Element>(self)
         try heap.build(by: areInIncreasingOrder)
         try heap.sort(by: areInIncreasingOrder)
@@ -20,11 +20,29 @@ extension MutableCollection where Element: Comparable {
 
     public
     func heapsorted(
-        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
     ) rethrows -> Self {
         var newCollection = self
-        try newCollection.heapsort(by: areInIncreasingOrder)
+        try newCollection.heapsort(comparingBy: areInIncreasingOrder)
         return newCollection
+    }
+
+}
+
+extension MutableCollection where Element: Comparable {
+
+    public mutating
+    func heapsort(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows {
+        try heapsort(comparingBy: areInIncreasingOrder)
+    }
+
+    public
+    func heapsorted(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows -> Self {
+        return try heapsorted(comparingBy: areInIncreasingOrder)
     }
 
 }
@@ -42,7 +60,7 @@ extension Collection {
 // MARK: - BinaryHeap
 
 private
-class BinaryHeap<Element: Comparable> {
+class BinaryHeap<Element> {
 
     // MARK: Properties
 
@@ -144,10 +162,9 @@ class BinaryHeap<Element: Comparable> {
             (rightIndex(for: index), right(for: index, range: defaultRange))
         ]
             .flatMap { pair in pair.1.map { item in (pair.0, item) } }
-            .filter { $0.1 != value }
             .forEach { pair in
-                let isLess = try areInIncreasingOrder(pair.1, value)
-                assert(isLess)
+                let isLessOrNotOrdered = try areInIncreasingOrder(pair.1, value) || !areInIncreasingOrder(value, pair.1)
+                assert(isLessOrNotOrdered)
                 try check(by: areInIncreasingOrder, at: pair.0)
             }
     }

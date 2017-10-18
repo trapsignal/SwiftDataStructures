@@ -5,11 +5,11 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension MutableCollection where Element: Comparable {
+extension MutableCollection {
 
     public mutating
     func mergesort(
-        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool,
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool,
         range: Range<Index>? = nil
     ) rethrows {
         let range = range ?? startIndex ..< endIndex
@@ -23,16 +23,37 @@ extension MutableCollection where Element: Comparable {
         let firstRange = range.lowerBound ..< medianIndex
         let secondRange = medianIndex ..< range.upperBound
 
-        try mergesort(by: areInIncreasingOrder, range: firstRange)
-        try mergesort(by: areInIncreasingOrder, range: secondRange)
+        try mergesort(comparingBy: areInIncreasingOrder, range: firstRange)
+        try mergesort(comparingBy: areInIncreasingOrder, range: secondRange)
         try merge(by: areInIncreasingOrder, firstRange, secondRange)
     }
 
     public
-    func mergesorted(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows -> Self {
+    func mergesorted(
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+    ) rethrows -> Self {
         var newCollection = self
-        try newCollection.mergesort(by: areInIncreasingOrder)
+        try newCollection.mergesort(comparingBy: areInIncreasingOrder)
         return newCollection
+    }
+
+}
+
+extension MutableCollection where Element: Comparable {
+
+    public mutating
+    func mergesort(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<),
+        range: Range<Index>? = nil
+    ) rethrows {
+        try mergesort(comparingBy: areInIncreasingOrder, range: range)
+    }
+
+    public
+    func mergesorted(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows -> Self {
+        return try mergesorted(comparingBy: areInIncreasingOrder)
     }
 
 }

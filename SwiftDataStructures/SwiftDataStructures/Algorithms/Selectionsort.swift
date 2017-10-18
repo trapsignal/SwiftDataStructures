@@ -5,10 +5,12 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension MutableCollection where Element: Comparable {
+extension MutableCollection {
 
     public mutating
-    func selectionsort(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
+    func selectionsort(
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+    ) rethrows {
         var i = startIndex
         while i != endIndex {
             let extrIndex = try indexOfExtremum(by: areInIncreasingOrder, range: i ..< endIndex)
@@ -18,10 +20,30 @@ extension MutableCollection where Element: Comparable {
     }
 
     public
-    func selectionsorted(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows -> Self {
+    func selectionsorted(
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+    ) rethrows -> Self {
         var newCollection = self
-        try newCollection.selectionsort(by: areInIncreasingOrder)
+        try newCollection.selectionsort(comparingBy: areInIncreasingOrder)
         return newCollection
+    }
+
+}
+
+extension MutableCollection where Element: Comparable {
+
+    public mutating
+    func selectionsort(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows {
+        try selectionsort(comparingBy: areInIncreasingOrder)
+    }
+
+    public
+    func selectionsorted(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows -> Self {
+        return try selectionsorted(comparingBy: areInIncreasingOrder)
     }
 
 }

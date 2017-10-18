@@ -5,10 +5,12 @@
 //  @author trapsignal <trapsignal@yahoo.com>
 //
 
-extension MutableCollection where Element: Comparable {
+extension MutableCollection {
 
     public mutating
-    func bubblesort(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows {
+    func bubblesort(
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+    ) rethrows {
         var wasChanged: Bool
 
         repeat {
@@ -19,7 +21,7 @@ extension MutableCollection where Element: Comparable {
                 let nextIndex = self.index(after: index)
                 let element = self[index]
                 let nextElement = self[nextIndex]
-                if try !areInIncreasingOrder(element, nextElement) && element != nextElement {
+                if try areInIncreasingOrder(nextElement, element) {
                     swapAt(index, nextIndex)
                     wasChanged = true
                 }
@@ -30,10 +32,30 @@ extension MutableCollection where Element: Comparable {
     }
 
     public
-    func bubblesorted(by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool) rethrows -> Self {
+    func bubblesorted(
+        comparingBy areInIncreasingOrder: @escaping (Element, Element) throws -> Bool
+    ) rethrows -> Self {
         var newCollection = self
-        try newCollection.bubblesort(by: areInIncreasingOrder)
+        try newCollection.bubblesort(comparingBy: areInIncreasingOrder)
         return newCollection
+    }
+
+}
+
+extension MutableCollection where Element: Comparable {
+
+    public mutating
+    func bubblesort(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows {
+        try bubblesort(comparingBy: areInIncreasingOrder)
+    }
+
+    public
+    func bubblesorted(
+        by areInIncreasingOrder: @escaping (Element, Element) throws -> Bool = (<)
+    ) rethrows -> Self {
+        return try bubblesorted(comparingBy: areInIncreasingOrder)
     }
 
 }
