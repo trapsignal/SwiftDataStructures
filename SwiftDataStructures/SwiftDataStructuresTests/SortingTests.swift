@@ -41,6 +41,11 @@ class SortingTests: XCTestCase {
         arr6.mergesort(by: areInIncreasingOrder)
         XCTAssertEqual(arr6, output)
         XCTAssertEqual(input.mergesorted(by: areInIncreasingOrder), output)
+
+        var arr7 = input
+        arr7.radixsort(by: areInIncreasingOrder)
+        XCTAssertEqual(arr7, output)
+        XCTAssertEqual(input.radixsorted(by: areInIncreasingOrder), output)
     }
 
     func test_ascending1() {
