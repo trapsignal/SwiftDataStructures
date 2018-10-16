@@ -212,7 +212,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
 
 func linearProbing(hashValue: Int, hashTableCapacity: Int) -> AnySequence<Int> {
     let capacity = hashTableCapacity
-    let firstIndex = hashValue % capacity
+    let firstIndex = abs(hashValue) % capacity
     let indices = sequence(first: firstIndex) { ($0 + 1) % capacity }
     return AnySequence(indices)
 }
@@ -223,7 +223,7 @@ func quadroProbing(hashValue: Int, hashTableCapacity capacity: Int) -> AnySequen
             result: state.result + state.delta,
             delta: state.delta + 1
         )
-        return (hashValue + state.result) % capacity
+        return (abs(hashValue) + state.result) % capacity
     }).lazy
     return AnySequence(indices)
 }

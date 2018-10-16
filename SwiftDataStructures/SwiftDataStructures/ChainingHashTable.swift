@@ -91,7 +91,7 @@ struct ChainingHashTable<
 
     @inline(__always) private
     func bagIndex(for hashValue: Int) -> Int {
-        return hashValue % hashTableCapacity
+        return abs(hashValue) % hashTableCapacity
     }
 
     private
