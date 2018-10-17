@@ -107,7 +107,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
     func values(for hashValue: Int) -> AnySequence<Value> {
         return AnySequence(
             ValueSequence(
-                indices: probingSequence(for: hashValue),
+                indices: probingSequence(for: abs(hashValue)),
                 hashTable: hashTable
             ).lazy
         )
@@ -119,7 +119,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
 
     mutating
     func remove(_ value: Value) {
-        for index in probingSequence(for: value.hashValue) {
+        for index in probingSequence(for: abs(value.hashValue)) {
             guard var currentItem = hashTable[index] else {
                 return
             }
@@ -135,18 +135,23 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
     }
 
     func contains(_ value: Value) -> Bool {
-        return values(for: value.hashValue).contains(value)
+        return values(for: abs(value.hashValue)).contains(value)
     }
 
     // MARK: Implementation
 
     private mutating
+    func padTailWithNils(upTo minCount: Int) {
+        while hashTable.count <= minCount {
+            hashTable.append(nil)
+        }
+    }
+
+    private mutating
     func _add(_ value: Value) -> Bool {
         var isAlreadyAdded = false
-        for index in probingSequence(for: value.hashValue) {
-            while hashTable.count <= index {
-                hashTable.append(nil)
-            }
+        for index in probingSequence(for: abs(value.hashValue)) {
+            padTailWithNils(upTo: index)
 
             let currentItem = hashTable[index]
 
@@ -174,6 +179,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
         hashTable.removeAll()
         hashTable.reserveCapacity(hashTableCapacity)
         values.forEach { _ = _add($0) }
+        padTailWithNils(upTo: values.count)
     }
 
     private mutating
@@ -203,7 +209,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
 
     @inline(__always) private
     func probingSequence(for hashValue: Int) -> AnySequence<Int> {
-        return probing(hashValue, hashTableCapacity)
+        return probing(abs(hashValue), hashTableCapacity)
     }
 
 }
