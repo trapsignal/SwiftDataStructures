@@ -141,17 +141,26 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
     // MARK: Implementation
 
     private mutating
-    func padTailWithNils(upTo minCount: Int) {
-        while hashTable.count <= minCount {
+    func padTailWithNils(upToCount minCount: Int) {
+        let countToPad = minCount - hashTable.count
+        guard countToPad > 0 else {
+            return
+        }
+        for _ in 0 ..< countToPad {
             hashTable.append(nil)
         }
+    }
+
+    private mutating
+    func padTailWithNils(upToIndex index: Int) {
+        padTailWithNils(upToCount: index + 1)
     }
 
     private mutating
     func _add(_ value: Value) -> Bool {
         var isAlreadyAdded = false
         for index in probingSequence(for: abs(value.hashValue)) {
-            padTailWithNils(upTo: index)
+            padTailWithNils(upToIndex: index)
 
             let currentItem = hashTable[index]
 
@@ -179,7 +188,7 @@ struct OpenAddressingHashTable<Value: Hashable>: HashTable {
         hashTable.removeAll()
         hashTable.reserveCapacity(hashTableCapacity)
         values.forEach { _ = _add($0) }
-        padTailWithNils(upTo: values.count)
+        padTailWithNils(upToCount: hashTableCapacity)
     }
 
     private mutating
